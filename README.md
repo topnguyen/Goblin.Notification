@@ -2,7 +2,7 @@
 
 docker build --tag goblin-notification:1.0 .
 
-docker run --network bridge --publish 8001:80 --env-file DockerEnv --detach --name goblin-notification goblin-notification:1.0
+docker run --network bridge --publish 8002:80 --env-file DockerEnv --detach --name goblin-notification goblin-notification:1.0
 
 ---
 
