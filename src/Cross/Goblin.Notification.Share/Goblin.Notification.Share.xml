@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Goblin.Notification.Share</name>
+    </assembly>
+    <members>
+        <member name="F:Goblin.Notification.Share.GoblinNotificationEndpoints.CreateSample">
+            <summary>
+                HTTP Method: PUT
+            </summary>
+        </member>
+        <member name="F:Goblin.Notification.Share.GoblinNotificationEndpoints.GetSample">
+            <summary>
+                HTTP Method: GET
+            </summary>
+        </member>
+        <member name="F:Goblin.Notification.Share.GoblinNotificationEndpoints.DeleteSample">
+            <summary>
+                HTTP Method: DELETE
+            </summary>
+        </member>
+    </members>
+</doc>

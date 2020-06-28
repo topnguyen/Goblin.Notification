@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <!-- Information -->
+    <PropertyGroup>
+        <!-- Language and Framework -->
+        <LangVersion>latest</LangVersion>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+
+        <!-- Output -->
+        <OutputPath>.\bin\</OutputPath>
+        <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    </PropertyGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\..\Cross\Goblin.Notification.Core\Goblin.Notification.Core.csproj" />
+        <ProjectReference Include="..\..\Service\Goblin.Notification.Contract.Service\Goblin.Notification.Contract.Service.csproj" />
+        <ProjectReference Include="..\..\Repository\Goblin.Notification.Contract.Repository\Goblin.Notification.Contract.Repository.csproj" />
+    </ItemGroup>
+</Project>
