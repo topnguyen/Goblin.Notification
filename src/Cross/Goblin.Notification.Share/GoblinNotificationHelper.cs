@@ -3,7 +3,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Flurl;
 using Flurl.Http;
-using Goblin.Core.Constants;
 using Goblin.Core.Errors;
 using Goblin.Notification.Share.Models;
 
@@ -13,20 +12,16 @@ namespace Goblin.Notification.Share
     {
         public static string Domain { get; set; } = string.Empty;
 
-        public static async Task<GoblinNotificationSampleModel> CreateAsync(GoblinNotificationCreateSampleModel model,
-            CancellationToken cancellationToken = default)
+        public static async Task SendAsync(GoblinNotificationNewEmailModel model, CancellationToken cancellationToken = default)
         {
             try
             {
                 var endpoint = Domain;
 
-                var fileModel = await endpoint
-                    .AppendPathSegment(GoblinNotificationEndpoints.CreateSample)
+                 await endpoint
+                    .AppendPathSegment(GoblinNotificationEndpoints.SendEmail)
                     .PostJsonAsync(model, cancellationToken: cancellationToken)
-                    .ReceiveJson<GoblinNotificationSampleModel>()
                     .ConfigureAwait(true);
-
-                return fileModel;
             }
             catch (FlurlHttpException ex)
             {
@@ -43,37 +38,6 @@ namespace Goblin.Notification.Share
 
                 throw new Exception(message);
             }
-        }
-
-        public static async Task<GoblinNotificationSampleModel> GetAsync(GoblinNotificationGetFileModel model,
-            CancellationToken cancellationToken = default)
-        {
-            var endpoint = Domain.Replace("{id}", model.Id.ToString());
-
-            var fileModel =
-                await endpoint
-                    .AppendPathSegment(GoblinNotificationEndpoints.GetSample)
-                    .WithHeader(GoblinHeaderKeys.Authorization, model.AuthorizationKey)
-                    .WithHeader(GoblinHeaderKeys.UserId, model.LoggedInUserId)
-                    .SetQueryParam(GoblinHeaderKeys.Authorization, model.AuthorizationKey)
-                    .SetQueryParam(GoblinHeaderKeys.UserId, model.LoggedInUserId)
-                    .GetJsonAsync<GoblinNotificationSampleModel>(cancellationToken: cancellationToken)
-                    .ConfigureAwait(true);
-
-            return fileModel;
-        }
-
-        public static async Task DeleteAsync(GoblinNotificationDeleteSampleModel model,
-            CancellationToken cancellationToken = default)
-        {
-            var endpoint = Domain.Replace("{id}", model.Id.ToString());
-
-            await endpoint
-                .AppendPathSegment(GoblinNotificationEndpoints.DeleteSample)
-                .WithHeader(GoblinHeaderKeys.Authorization, model.AuthorizationKey)
-                .WithHeader(GoblinHeaderKeys.UserId, model.LoggedInUserId)
-                .DeleteAsync(cancellationToken)
-                .ConfigureAwait(true);
         }
     }
 }
