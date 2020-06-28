@@ -4,19 +4,9 @@
         <name>Goblin.Notification.Share</name>
     </assembly>
     <members>
-        <member name="F:Goblin.Notification.Share.GoblinNotificationEndpoints.CreateSample">
+        <member name="F:Goblin.Notification.Share.GoblinNotificationEndpoints.SendEmail">
             <summary>
-                HTTP Method: PUT
-            </summary>
-        </member>
-        <member name="F:Goblin.Notification.Share.GoblinNotificationEndpoints.GetSample">
-            <summary>
-                HTTP Method: GET
-            </summary>
-        </member>
-        <member name="F:Goblin.Notification.Share.GoblinNotificationEndpoints.DeleteSample">
-            <summary>
-                HTTP Method: DELETE
+                HTTP Method: POST
             </summary>
         </member>
     </members>

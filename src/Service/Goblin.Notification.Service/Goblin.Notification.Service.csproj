@@ -15,4 +15,7 @@
         <ProjectReference Include="..\Goblin.Notification.Contract.Service\Goblin.Notification.Contract.Service.csproj" />
         <ProjectReference Include="..\..\Cross\Goblin.Notification.Core\Goblin.Notification.Core.csproj" />
     </ItemGroup>
+    <ItemGroup>
+      <PackageReference Include="MailKit" Version="2.6.0" />
+    </ItemGroup>
 </Project>
