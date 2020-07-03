@@ -4,7 +4,7 @@ using Goblin.Core.Models;
 
 namespace Goblin.Notification.Share.Models
 {
-    public class GoblinNotificationNewEmailModel: GoblinApiRequestModel
+    public class GoblinNotificationNewEmailModel: GoblinApiSubmitRequestModel
     {
         [Required]
         public List<string> ToEmails { get; set; }
