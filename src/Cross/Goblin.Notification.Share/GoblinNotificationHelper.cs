@@ -1,14 +1,11 @@
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Flurl.Http;
 using Flurl.Http.Configuration;
 using Goblin.Core.Constants;
-using Goblin.Core.Errors;
 using Goblin.Core.Settings;
 using Goblin.Notification.Share.Models;
 using Goblin.Notification.Share.Validators;
-using Microsoft.AspNetCore.Http;
 
 namespace Goblin.Notification.Share
 {
@@ -39,22 +36,8 @@ namespace Goblin.Notification.Share
 
         public static async Task SendAsync(GoblinNotificationNewEmailModel model, CancellationToken cancellationToken = default)
         {
-            var validator = new GoblinNotificationNewEmailModelValidator();
-
-            var validatorResults = await validator.ValidateAsync(model, cancellationToken);
-
-            if (!validatorResults.IsValid)
-            {
-                var errorModel = new GoblinErrorModel
-                {
-                    Code = StatusCodes.Status400BadRequest.ToString(),
-                    Message = string.Join("; ", validatorResults.Errors.Select(x => x.ErrorMessage?.Trim('.'))),
-                    AdditionalData = validatorResults.Errors.ToDictionary(x => x.PropertyName, x => (object) x.ErrorMessage)
-                };
-
-                throw new GoblinException(errorModel);
-            }
-
+            ValidationHelper.Validate<GoblinNotificationNewEmailModelValidator, GoblinNotificationNewEmailModel>(model);
+            
             try
             {
                 var endpoint = GetRequest(model.LoggedInUserId).AppendPathSegment(GoblinNotificationEndpoints.SendEmail);
