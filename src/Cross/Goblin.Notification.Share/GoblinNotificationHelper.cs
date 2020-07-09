@@ -29,6 +29,11 @@ namespace Goblin.Notification.Share
                 request = request.WithHeader(GoblinHeaderKeys.UserId, loggedInUserId);
             }
 
+            request = request.ConfigureRequest(x =>
+            {
+                x.JsonSerializer = JsonSerializer;
+            });
+
             return request;
         }
 
@@ -44,8 +49,7 @@ namespace Goblin.Notification.Share
                 {
                     Code = StatusCodes.Status400BadRequest.ToString(),
                     Message = string.Join("; ", validatorResults.Errors.Select(x => x.ErrorMessage?.Trim('.'))),
-                    AdditionalData =
-                        validatorResults.Errors.ToDictionary(x => x.PropertyName, x => (object) x.ErrorMessage)
+                    AdditionalData = validatorResults.Errors.ToDictionary(x => x.PropertyName, x => (object) x.ErrorMessage)
                 };
 
                 throw new GoblinException(errorModel);
@@ -56,7 +60,6 @@ namespace Goblin.Notification.Share
                 var endpoint = GetRequest(model.LoggedInUserId).AppendPathSegment(GoblinNotificationEndpoints.SendEmail);
 
                 await endpoint
-                    .ConfigureRequest(x => { x.JsonSerializer = JsonSerializer; })
                     .PostJsonAsync(model, cancellationToken: cancellationToken)
                     .ConfigureAwait(true);
             }
