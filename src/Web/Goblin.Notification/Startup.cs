@@ -1,8 +1,8 @@
 ﻿using Elect.Core.ConfigUtils;
 using Goblin.Core.Web.Setup;
-using Goblin.Notification.Core.Validators;
 using Goblin.Notification.Core;
 using Goblin.Notification.Repository;
+using Goblin.Notification.Share.Validators;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 

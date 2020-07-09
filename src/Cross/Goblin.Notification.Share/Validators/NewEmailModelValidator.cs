@@ -1,11 +1,11 @@
 using FluentValidation;
 using Goblin.Notification.Share.Models;
 
-namespace Goblin.Notification.Core.Validators
+namespace Goblin.Notification.Share.Validators
 {
-    public class CreateSampleModelValidator : AbstractValidator<GoblinNotificationNewEmailModel>
+    public class GoblinNotificationNewEmailModelValidator : AbstractValidator<GoblinNotificationNewEmailModel>
     {
-        public CreateSampleModelValidator()
+        public GoblinNotificationNewEmailModelValidator()
         {
             RuleFor(x => x.ToEmails).NotEmpty();
             RuleFor(x => x.Subject).NotEmpty();
